@@ -64,7 +64,7 @@ class SVM:
 
     def predict(self, X):
         X_mat = np.array(X)
-        approx = X_mat * self.w + self.b
+        approx = X_mat @ self.w + self.b
         return np.sign(approx)
     
     def score(self, X, y):
