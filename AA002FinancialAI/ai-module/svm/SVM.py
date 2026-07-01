@@ -59,10 +59,14 @@ class SVM:
                     # CASE B: Correctly classified AND safely outside the margin (Safe Zone)
                     # Hinge Loss is exactly 0. No classification error to correct.
                     # Run pure L2 Regularization (Weight Decay) to shrink 'w' and maximize the margin width
-                    self.w -= self.learning_rate * (2 * self.self.lambda_param * self.w)
+                    self.w -= self.learning_rate * (2 * self.lambda_param * self.w)
 
 
     def predict(self, X):
         X_mat = np.array(X)
         approx = X_mat * self.w + self.b
         return np.sign(approx)
+    
+    def score(self, X, y):
+        predictions =  self.predict(X)
+        return np.mean(predictions == y)
